@@ -1,7 +1,0 @@
-D:\work\CFDriver\CFDriver\bin\Debug\CFDriver.dll
-D:\work\CFDriver\CFDriver\bin\Debug\CFDriver.pdb
-D:\work\CFDriver\CFDriver\bin\Debug\UnityEngine.dll
-D:\work\CFDriver\CFDriver\bin\Debug\UnityEngine.xml
-D:\work\CFDriver\CFDriver\obj\Debug\CFDriver.csprojResolveAssemblyReference.cache
-D:\work\CFDriver\CFDriver\obj\Debug\CFDriver.dll
-D:\work\CFDriver\CFDriver\obj\Debug\CFDriver.pdb
