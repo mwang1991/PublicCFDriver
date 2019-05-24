@@ -1,0 +1,47 @@
+\hypertarget{class_c_f_dserver}{}\section{C\+F\+Dserver Class Reference}
+\label{class_c_f_dserver}\index{CFDserver@{CFDserver}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_f_dserver_a72289d07d5a1932d9670f5a8e18caabc}\label{class_c_f_dserver_a72289d07d5a1932d9670f5a8e18caabc}} 
+void {\bfseries error} (const char $\ast$msg)
+\item 
+\mbox{\Hypertarget{class_c_f_dserver_a2e900b238ae8e0ea49095a4131754377}\label{class_c_f_dserver_a2e900b238ae8e0ea49095a4131754377}} 
+int \mbox{\hyperlink{class_c_f_dserver_a2e900b238ae8e0ea49095a4131754377}{send\+\_\+file}} (std\+::string file)
+\begin{DoxyCompactList}\small\item\em Send a file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_f_dserver_aeccf668d3d88a2b7fb9a36b2787dab75}\label{class_c_f_dserver_aeccf668d3d88a2b7fb9a36b2787dab75}} 
+int \mbox{\hyperlink{class_c_f_dserver_aeccf668d3d88a2b7fb9a36b2787dab75}{send\+\_\+data}} (void $\ast$buf, int len, std\+::string name, int type)
+\begin{DoxyCompactList}\small\item\em Send integer or float data chain. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_f_dserver_a4814827571a20380815602968c543c57}\label{class_c_f_dserver_a4814827571a20380815602968c543c57}} 
+int \mbox{\hyperlink{class_c_f_dserver_a4814827571a20380815602968c543c57}{init\+\_\+server}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the server. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_f_dserver_af0328bb5423ae80c99313ea633e1c000}\label{class_c_f_dserver_af0328bb5423ae80c99313ea633e1c000}} 
+void \mbox{\hyperlink{class_c_f_dserver_af0328bb5423ae80c99313ea633e1c000}{close\+\_\+server}} ()
+\begin{DoxyCompactList}\small\item\em close the server \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_f_dserver_a03eefa056119109ea0861f9027cf5fc6}\label{class_c_f_dserver_a03eefa056119109ea0861f9027cf5fc6}} 
+const int {\bfseries type\+Int} = 1
+\item 
+\mbox{\Hypertarget{class_c_f_dserver_aecaee59eb185de1adf3ac6a341ed2f86}\label{class_c_f_dserver_aecaee59eb185de1adf3ac6a341ed2f86}} 
+const int {\bfseries type\+Float} = 2
+\item 
+\mbox{\Hypertarget{class_c_f_dserver_aae8544d933e4a1da40693a3f17781611}\label{class_c_f_dserver_aae8544d933e4a1da40693a3f17781611}} 
+char {\bfseries recv\+Cmd}
+\item 
+\mbox{\Hypertarget{class_c_f_dserver_a90ad80f88bc3e76fc5caeb9f3d97449a}\label{class_c_f_dserver_a90ad80f88bc3e76fc5caeb9f3d97449a}} 
+int {\bfseries sock\+Id}
+\item 
+\mbox{\Hypertarget{class_c_f_dserver_ad09f73621e29d38757595d6eb7477158}\label{class_c_f_dserver_ad09f73621e29d38757595d6eb7477158}} 
+bool {\bfseries treat\+Cmd} = false
+\item 
+\mbox{\Hypertarget{class_c_f_dserver_a0dc9c18471d2b0aa6b1dd8c9c679604f}\label{class_c_f_dserver_a0dc9c18471d2b0aa6b1dd8c9c679604f}} 
+bool {\bfseries send\+Data} = true
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+code/C\+F\+Dserver.\+h\item 
+code/C\+F\+Dserver.\+cpp\end{DoxyCompactItemize}

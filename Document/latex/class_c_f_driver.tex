@@ -1,0 +1,46 @@
+\hypertarget{class_c_f_driver}{}\section{C\+F\+Driver Class Reference}
+\label{class_c_f_driver}\index{CFDriver@{CFDriver}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_f_driver_a0e5e19f1775da0e8d8a7e6f0d27dac2d}\label{class_c_f_driver_a0e5e19f1775da0e8d8a7e6f0d27dac2d}} 
+void {\bfseries error} (const char $\ast$msg)
+\item 
+\mbox{\Hypertarget{class_c_f_driver_afa9d86fbcb0997773feba442d62fc5dc}\label{class_c_f_driver_afa9d86fbcb0997773feba442d62fc5dc}} 
+int \mbox{\hyperlink{class_c_f_driver_afa9d86fbcb0997773feba442d62fc5dc}{send\+\_\+file}} (std\+::string file)
+\begin{DoxyCompactList}\small\item\em Send a file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_f_driver_a7667bc57137b8a1c3e9ed4dea191222b}\label{class_c_f_driver_a7667bc57137b8a1c3e9ed4dea191222b}} 
+int \mbox{\hyperlink{class_c_f_driver_a7667bc57137b8a1c3e9ed4dea191222b}{send\+\_\+data}} (void $\ast$buf, int len, std\+::string name, int type)
+\begin{DoxyCompactList}\small\item\em Send integer or float data chain. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_f_driver_afc59b3c217b7031eaad6a193ae5c9790}\label{class_c_f_driver_afc59b3c217b7031eaad6a193ae5c9790}} 
+int \mbox{\hyperlink{class_c_f_driver_afc59b3c217b7031eaad6a193ae5c9790}{init\+\_\+server}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the server. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_f_driver_a2c5755e2a5257d5a3f03694e2c1f0a7c}\label{class_c_f_driver_a2c5755e2a5257d5a3f03694e2c1f0a7c}} 
+void \mbox{\hyperlink{class_c_f_driver_a2c5755e2a5257d5a3f03694e2c1f0a7c}{close\+\_\+server}} ()
+\begin{DoxyCompactList}\small\item\em close the server \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_f_driver_a2dc6ace83c2b9ae54e89a47476d31c6d}\label{class_c_f_driver_a2dc6ace83c2b9ae54e89a47476d31c6d}} 
+const int {\bfseries type\+Int} = 1
+\item 
+\mbox{\Hypertarget{class_c_f_driver_a7ca463d67e1600367a58c4d5f4849d3f}\label{class_c_f_driver_a7ca463d67e1600367a58c4d5f4849d3f}} 
+const int {\bfseries type\+Float} = 2
+\item 
+\mbox{\Hypertarget{class_c_f_driver_aa46f2d8cb795a45613904ef096f03168}\label{class_c_f_driver_aa46f2d8cb795a45613904ef096f03168}} 
+char {\bfseries recv\+Cmd}
+\item 
+\mbox{\Hypertarget{class_c_f_driver_a59edc8485a4a23728410d8eff351d645}\label{class_c_f_driver_a59edc8485a4a23728410d8eff351d645}} 
+int {\bfseries sock\+Id}
+\item 
+\mbox{\Hypertarget{class_c_f_driver_a995588602022c965c3cfde5fbc235d5d}\label{class_c_f_driver_a995588602022c965c3cfde5fbc235d5d}} 
+bool {\bfseries treat\+Cmd} = false
+\item 
+\mbox{\Hypertarget{class_c_f_driver_a7cfbb10b47a62362dfb3e35461497bbc}\label{class_c_f_driver_a7cfbb10b47a62362dfb3e35461497bbc}} 
+bool {\bfseries send\+Data} = true
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+code/C\+F\+Dserver.\+h\end{DoxyCompactItemize}

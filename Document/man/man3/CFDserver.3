@@ -1,0 +1,57 @@
+.TH "CFDserver" 3 "Thu May 16 2019" "CFDriver" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CFDserver
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBerror\fP (const char *msg)"
+.br
+.ti -1c
+.RI "int \fBsend_file\fP (std::string file)"
+.br
+.RI "Send a file\&. "
+.ti -1c
+.RI "int \fBsend_data\fP (void *buf, int len, std::string name, int type)"
+.br
+.RI "Send integer or float data chain\&. "
+.ti -1c
+.RI "int \fBinit_server\fP ()"
+.br
+.RI "Initialize the server\&. "
+.ti -1c
+.RI "void \fBclose_server\fP ()"
+.br
+.RI "close the server "
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "const int \fBtypeInt\fP = 1"
+.br
+.ti -1c
+.RI "const int \fBtypeFloat\fP = 2"
+.br
+.ti -1c
+.RI "char \fBrecvCmd\fP"
+.br
+.ti -1c
+.RI "int \fBsockId\fP"
+.br
+.ti -1c
+.RI "bool \fBtreatCmd\fP = false"
+.br
+.ti -1c
+.RI "bool \fBsendData\fP = true"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CFDriver from the source code\&.
