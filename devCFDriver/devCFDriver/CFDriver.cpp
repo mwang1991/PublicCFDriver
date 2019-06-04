@@ -1,7 +1,10 @@
+#ifdef _WIN64
+
 #include "pch.h"
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
-
+#endif
 #include "CFDriver.h"
+
 using namespace std;
 
 
@@ -42,7 +45,7 @@ string CFDriver::init_server(int port)
 	int serverSockId = socket(AF_INET, SOCK_STREAM, 0);
 	if (serverSockId == -1)    return("Error creating socket\n");
 	printf("Server socket created\n");
-	bzero((char *)&serv_addr, sizeof(serv_addr));
+	memset((char *)&serv_addr, 0, sizeof(serv_addr));
 	serv_addr.sin_family = AF_INET;
 	serv_addr.sin_addr.s_addr = INADDR_ANY;
 	serv_addr.sin_port = htons(port);

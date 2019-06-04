@@ -1,8 +1,20 @@
-﻿#pragma once
-#include<string>
-#include <stdio.h> 
+﻿#ifdef _WIN64
 #include <winsock2.h> 
+#pragma once
+
 #pragma comment(lib,"ws2_32.lib")  
+#endif
+
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string> 
+#include <string.h> 
+
 
 #define BUFLEN 1024
 
@@ -23,7 +35,7 @@ public:
 	std::string send_file(std::string file);
 private:
 #ifdef linux
-	int sockID;
+	int sockId;
 #endif
 #ifdef _WIN64
 
