@@ -14,7 +14,7 @@ public:
 
 //	std::string init_server();
 
-	std::string init_server();
+	std::string init_server(int port);
 	std::string init_client(const char* adress, int port);
 	std::string send_cmd(char command);
 	std::string recv_cmd(char & command);

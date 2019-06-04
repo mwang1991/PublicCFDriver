@@ -6,7 +6,7 @@ using namespace std;
 
 
 
-string CFDriver::init_server()
+string CFDriver::init_server(int port)
 {
 #ifdef _WIN64
 	int len;
@@ -16,7 +16,7 @@ string CFDriver::init_server()
 
 
 	serveraddr.sin_family = AF_INET;
-	serveraddr.sin_port = htons(9102);
+	serveraddr.sin_port = htons(port);
 	serveraddr.sin_addr.S_un.S_addr = htonl(INADDR_ANY);
 
 	if (bind(serversoc, (SOCKADDR *)&serveraddr, sizeof(serveraddr)) != 0)
@@ -35,7 +35,24 @@ string CFDriver::init_server()
 		return("Accept fail!\n");
 	return("Connected\n");
 #endif
+#ifdef linux
+	struct sockaddr_in serv_addr, cli_addr;
+	socklen_t clilen;
 
+	int serverSockId = socket(AF_INET, SOCK_STREAM, 0);
+	if (serverSockId == -1)    return("Error creating socket\n");
+	printf("Server socket created\n");
+	bzero((char *)&serv_addr, sizeof(serv_addr));
+	serv_addr.sin_family = AF_INET;
+	serv_addr.sin_addr.s_addr = INADDR_ANY;
+	serv_addr.sin_port = htons(port);
+	if (bind(serverSockId, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) return("ERROR on binding");
+	listen(serverSockId, 2);
+	clilen = sizeof(cli_addr);
+	printf("Waiting for client\n");
+	sockId = accept(serverSockId, (struct sockaddr *) &cli_addr, &clilen);
+	printf("Client: %s connected\n", inet_ntoa(cli_addr.sin_addr));
+#endif
 }
 
 string CFDriver::init_client(const char* adress, int port)
@@ -47,25 +64,27 @@ string CFDriver::init_client(const char* adress, int port)
 	{
 		return("connect error !");
 	}
-	while (true) {
-		clientsoc = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-		if (clientsoc == INVALID_SOCKET)
-		{
-			return("connect error !");
+	clientsoc = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+	if (clientsoc == INVALID_SOCKET)
+	{
+		return("connect error !");
 
-		}
-		sockaddr_in serAddr;
-		serAddr.sin_family = AF_INET;
-		serAddr.sin_port = htons(port);
-		serAddr.sin_addr.S_un.S_addr = inet_addr(adress);
-		if (connect(clientsoc, (sockaddr *)&serAddr, sizeof(serAddr)) == SOCKET_ERROR)
-		{
-			closesocket(clientsoc);
-			return("connect error !");
-		}
-#endif
-		return "Connected";
 	}
+	sockaddr_in serAddr;
+	serAddr.sin_family = AF_INET;
+	serAddr.sin_port = htons(port);
+	serAddr.sin_addr.S_un.S_addr = inet_addr(adress);
+	if (connect(clientsoc, (sockaddr *)&serAddr, sizeof(serAddr)) == SOCKET_ERROR)
+	{
+		closesocket(clientsoc);
+		return("connect error !");
+	}
+#endif
+
+
+
+	return "Connected";
+	
 }
 
 string CFDriver::send_cmd(char command)
