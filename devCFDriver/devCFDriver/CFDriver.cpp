@@ -1,6 +1,7 @@
+#include "pch.h"
+
 #ifdef _WIN64
 
-#include "pch.h"
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #endif
 #include "CFDriver.h"

@@ -4,12 +4,15 @@
 
 #pragma comment(lib,"ws2_32.lib")  
 #endif
-
-#include <fcntl.h>
-#include <sys/types.h>
+#ifdef linux
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#endif
+
+#include <fcntl.h>
+#include <sys/types.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string> 
