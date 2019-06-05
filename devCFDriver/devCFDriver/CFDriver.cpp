@@ -18,7 +18,6 @@ string CFDriver::init_server(int port)
 	if ((serversoc = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) <= 0)	//create a tcp socket
 		return("Create socket fail!\n");
 
-
 	serveraddr.sin_family = AF_INET;
 	serveraddr.sin_port = htons(port);
 	serveraddr.sin_addr.S_un.S_addr = htonl(INADDR_ANY);
