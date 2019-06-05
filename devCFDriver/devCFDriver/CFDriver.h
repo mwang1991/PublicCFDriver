@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <string> 
 #include <string.h> 
-
+#include <iostream>
 
 #define BUFLEN 1024
 

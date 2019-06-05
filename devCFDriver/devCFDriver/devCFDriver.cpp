@@ -10,7 +10,7 @@ int main()
 {	
 	CFDriver s;
 
-    cout << "Hello World!\n"<<endl<<s.init_server(5099); 
+    cout << "Hello World!\n"<<endl<<s.init_client("192.168.1.20", 5099); 
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
