@@ -1,8 +1,6 @@
-﻿  pch.cpp
-  CFDriver.cpp
-d:\work\cfdriver\devcfdriver\devcfdriver\cfdriver.cpp(137): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
-d:\work\cfdriver\devcfdriver\devcfdriver\cfdriver.cpp(138): warning C4312: “类型强制转换”: 从“int”转换到更大的“char *”
-d:\work\cfdriver\devcfdriver\devcfdriver\cfdriver.cpp(162): warning C4312: “类型强制转换”: 从“int”转换到更大的“char *”
-  devCFDriver.cpp
-  正在生成代码...
+﻿  CFDriver.cpp
+d:\work\cfdriver\devcfdriver\devcfdriver\cfdriver.cpp(131): warning C4553: “==”: 未使用表达式结果；是否打算使用“=”?
+d:\work\cfdriver\devcfdriver\devcfdriver\cfdriver.cpp(144): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+d:\work\cfdriver\devcfdriver\devcfdriver\cfdriver.cpp(145): warning C4312: “类型强制转换”: 从“int”转换到更大的“char *”
+d:\work\cfdriver\devcfdriver\devcfdriver\cfdriver.cpp(169): warning C4312: “类型强制转换”: 从“int”转换到更大的“char *”
   devCFDriver.vcxproj -> D:\work\CFDriver\devCFDriver\x64\Debug\devCFDriver.exe

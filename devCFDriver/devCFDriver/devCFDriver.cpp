@@ -8,9 +8,13 @@ using namespace std;
 
 int main()
 {	
+	char c;
 	CFDriver s;
 	cout << "Hello World!\n" << endl;
 	cout<<s.init_server(5099); 
+	s.recv_cmd(c);
+	printf("%c", c);
+	//cout << "end" << endl;
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单

@@ -36,7 +36,6 @@ string CFDriver::init_server(int port)
 	//waiting for connecting
 	if ((clientsoc = accept(serversoc, (SOCKADDR *)&clientaddr, &len)) <= 0)
 		return("Accept fail!\n");
-	ioctlsocket(soc, FIONBIO, (u_long FAR*) 1);
 	return("Connected\n");
 #endif
 #ifdef linux
@@ -57,7 +56,6 @@ string CFDriver::init_server(int port)
 	sockId = accept(serverSockId, (struct sockaddr *) &cli_addr, &clilen);
 	printf("Client: %s connected\n", inet_ntoa(cli_addr.sin_addr));
 	int opt = 1;
-	ioctl(sockID, FIONBIO, &opt);
 	return ("Connected\n");
 #endif
 }
@@ -108,11 +106,8 @@ string CFDriver::init_client(const char* adress, int port)
     {
        return("\n Error : Connect Failed \n");
     } 
-	int opt = 1;
-	ioctl(sockID, FIONBIO, &opt);
 #endif
 
-	ioctlsocket(soc, FIONBIO, (u_long FAR*) 1);
 
 	return "Connected";
 	
@@ -128,7 +123,7 @@ string CFDriver::send_cmd(char command)
 string CFDriver::recv_cmd(char & command)
 {
 	char buf[BUFLEN];
-	cfdsend(buf, BUFLEN);
+	cfdrecv(buf, BUFLEN)==0;
 	command = buf[0];
 	return string();
 }
@@ -192,12 +187,18 @@ int CFDriver::cfdsend(const char * buf, int len)
 #ifdef _WIN64
 	return send(clientsoc, buf, len, 0);
 #endif
+#ifdef linux
+	return send(sockId, buf, len, 0);
+#endif
 }
 
 int CFDriver::cfdrecv(char * buf, int len)
 {
 #ifdef _WIN64
 	return recv(clientsoc, buf, len, 0);
+#endif
+#ifdef linux
+	return recv(sockId, buf, len, 0);
 #endif
 	
 }
