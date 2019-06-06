@@ -14,9 +14,10 @@ using namespace std;
 
 string CFDriver::init_server(int port)
 {
-	freopen("debug.txt", "w", stdout);
 
 #ifdef _WIN64
+	freopen("debug.txt", "w", stdout);
+
 	int len;
 	WSAStartup(MAKEWORD(1, 1), &wsa);	//initial Ws2_32.dll by a process
 	if ((serversoc = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) <= 0)	//create a tcp socket
@@ -66,9 +67,10 @@ string CFDriver::init_server(int port)
 
 string CFDriver::init_client(const char* adress, int port)
 {
-	freopen("debug.txt", "a", stdout);
 
 #ifdef _WIN64
+	freopen("debug.txt", "a", stdout);
+
 	WORD sockVersion = MAKEWORD(2, 2);
 	WSADATA data;
 	if (WSAStartup(sockVersion, &data) != 0)
