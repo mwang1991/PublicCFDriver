@@ -1,12 +1,6 @@
 ﻿  CFDriver.cpp
-d:\work\cfdriver\devcfdriver\devcfdriver\cfdriver.cpp(128): warning C4553: “==”: 未使用表达式结果；是否打算使用“=”?
-d:\work\cfdriver\devcfdriver\devcfdriver\cfdriver.cpp(141): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
-d:\work\cfdriver\devcfdriver\devcfdriver\cfdriver.cpp(142): warning C4312: “类型强制转换”: 从“int”转换到更大的“char *”
-d:\work\cfdriver\devcfdriver\devcfdriver\cfdriver.cpp(166): warning C4312: “类型强制转换”: 从“int”转换到更大的“char *”
-  devCFDriver.cpp
-d:\work\cfdriver\devcfdriver\devcfdriver\devcfdriver.cpp(16): warning C4473: “printf”: 没有为格式字符串传递足够的参数
-  d:\work\cfdriver\devcfdriver\devcfdriver\devcfdriver.cpp(16): note: 占位符和其参数预计 1 可变参数，但提供的却是 0 参数
-  d:\work\cfdriver\devcfdriver\devcfdriver\devcfdriver.cpp(16): note: 缺失的可变参数 1 为格式字符串“%d”所需
-  iCFDriver.cpp
-  正在生成代码...
+d:\work\cfdriver\devcfdriver\devcfdriver\cfdriver.cpp(132): warning C4553: “==”: 未使用表达式结果；是否打算使用“=”?
+d:\work\cfdriver\devcfdriver\devcfdriver\cfdriver.cpp(145): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+d:\work\cfdriver\devcfdriver\devcfdriver\cfdriver.cpp(146): warning C4312: “类型强制转换”: 从“int”转换到更大的“char *”
+d:\work\cfdriver\devcfdriver\devcfdriver\cfdriver.cpp(170): warning C4312: “类型强制转换”: 从“int”转换到更大的“char *”
   devCFDriver.vcxproj -> D:\work\CFDriver\devCFDriver\x64\Debug\devCFDriver.exe

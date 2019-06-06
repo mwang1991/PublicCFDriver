@@ -3,6 +3,8 @@
 #ifdef _WIN64
 
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
+
 #endif
 #include "CFDriver.h"
 
@@ -12,7 +14,7 @@ using namespace std;
 
 string CFDriver::init_server(int port)
 {
-	freopen_s(&stream, "debug.txt", "a", stdout);
+	freopen("debug.txt", "w", stdout);
 
 #ifdef _WIN64
 	int len;
@@ -64,7 +66,7 @@ string CFDriver::init_server(int port)
 
 string CFDriver::init_client(const char* adress, int port)
 {
-	freopen_s(&stream, "debug.txt", "a", stdout);
+	freopen("debug.txt", "a", stdout);
 
 #ifdef _WIN64
 	WORD sockVersion = MAKEWORD(2, 2);
