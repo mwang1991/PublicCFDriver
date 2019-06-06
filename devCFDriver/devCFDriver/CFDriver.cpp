@@ -12,6 +12,8 @@ using namespace std;
 
 string CFDriver::init_server(int port)
 {
+	freopen_s(&stream, "debug.txt", "a", stdout);
+
 #ifdef _WIN64
 	int len;
 	WSAStartup(MAKEWORD(1, 1), &wsa);	//initial Ws2_32.dll by a process
@@ -62,6 +64,8 @@ string CFDriver::init_server(int port)
 
 string CFDriver::init_client(const char* adress, int port)
 {
+	freopen_s(&stream, "debug.txt", "a", stdout);
+
 #ifdef _WIN64
 	WORD sockVersion = MAKEWORD(2, 2);
 	WSADATA data;

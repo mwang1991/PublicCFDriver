@@ -24,6 +24,12 @@
     <ClInclude Include="CFDriver.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="iCFDriver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -35,5 +41,13 @@
     <ClCompile Include="CFDriver.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="iCFDriver.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="devCFDriver.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

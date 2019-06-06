@@ -3,17 +3,19 @@
 
 #include "pch.h"
 
-#include"CFDriver.h"
+#include"iCFDriver.h"
 using namespace std;
 
 int main()
 {	
-	char c;
-	CFDriver s;
+	char c = 'a';
 	cout << "Hello World!\n" << endl;
-	cout<<s.init_server(5099); 
-	s.recv_cmd(c);
+	InitServer(5099);
+
+	//s.send_cmd(c);
+	printf("SetTexture id:%d\n");
 	printf("%c", c);
+
 	//cout << "end" << endl;
 }
 

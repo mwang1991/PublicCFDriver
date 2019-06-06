@@ -28,6 +28,7 @@ public:
 //	~CFDriver();
 
 //	std::string init_server();
+	FILE *stream;
 
 	std::string init_server(int port);
 	std::string init_client(const char* adress, int port);
