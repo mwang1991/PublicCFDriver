@@ -136,7 +136,7 @@ string CFDriver::recv_cmd(char & command)
 	return string();
 }
 
-string CFDriver::send_data( void * buf, int len, int size, string name)
+string CFDriver::send_data( void * buf, int len, int size)
 {
 
 	int     left = 0;
@@ -144,14 +144,14 @@ string CFDriver::send_data( void * buf, int len, int size, string name)
 	left = len * size;
 	//char    revbuf[BUFLEN];
 
-	cfdsend(name.c_str(), name.length() + 1);
+	//cfdsend(name, sizeof(name));
 	cfdsend((char*)left, 4);
 
-	while (left > 1024)
+	while (left > BUFLEN)
 	{
-		cfdsend((char*)buf + count, 1024);
-		count += 1024;
-		left -= 1024;
+		cfdsend((char*)buf + count, BUFLEN);
+		count += BUFLEN;
+		left -= BUFLEN;
 	}
 	cfdsend((char*)buf + count, left);
 
@@ -159,25 +159,24 @@ string CFDriver::send_data( void * buf, int len, int size, string name)
 
 }
 
-string CFDriver::recv_data(void * buf, int &len, int size, string &name)
+string CFDriver::recv_data(void * buf, int &len, int size)
 {
 
-	char bufname[BUFLEN];
-	int namelen;
+	//int namelen = 0;
+	int recvlen = 0;
 	int left = 0;
 	int count = 0;
 
-	namelen = cfdrecv(bufname, BUFLEN);
-	name = string(bufname);
+	//namelen = cfdrecv(name, BUFLEN);
 	cfdrecv((char *)left, 4);
 
 	len = left / size;
 	while (left > BUFLEN)
 		{
-			cfdrecv((char *)buf + count, BUFLEN);
+			recvlen = cfdrecv((char *)buf + count, BUFLEN);
 
-			left -= BUFLEN;
-			count += BUFLEN;
+			left -= recvlen;
+			count += recvlen;
 		}
 		cfdrecv((char *)buf + count, left);
 

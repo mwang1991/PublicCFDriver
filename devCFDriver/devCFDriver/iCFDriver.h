@@ -15,7 +15,7 @@ extern "C"
 	extern void RecvFlag(int len, int* flag);
 	extern void SendVof(int len, float* vof);
 	extern void RecvVof(int len, float* vof);
-	extern void SendData(char* name, int len, float* vof);
-	extern void RecvData(char* name, int len, float* vof);
+	extern void SendData(int len, float* data);	//Backup function
+	extern void RecvData(int len, float* data);	//Backup function
 
 }

@@ -19,3 +19,67 @@ void RecvCommand(char & command)
 	s.recv_cmd(command);
 }
 
+void InitSimulation()
+{
+	s.send_cmd('0');
+}
+
+void StartSimulation()
+{
+	s.send_cmd('1');
+}
+
+void StopSimulation()
+{
+	s.send_cmd('2');
+}
+
+void ContinueSimulation()
+{
+	s.send_cmd('3');
+}
+
+void SendData(int len, float * data)
+{
+	s.send_data(data, len, 4);
+}
+
+void RecvData(int len, float * data)
+{
+	s.send_cmd('D');
+	s.recv_data(data, len, 4);
+}
+
+void SendGeometry(int len, float * geometry)
+{
+	s.send_data(geometry, len * 3, 4);	 //3D->x,y,z
+}
+
+void RecvGeometry(int len, float * geometry)
+{
+	s.send_cmd('G');	//ask for geometry data
+	s.recv_data(geometry, len, 4);
+	len = len / 3; //3D->x,y,z
+}
+
+void SendFlag(int len, int * flag)
+{
+	s.send_data(flag, len, 4);
+}
+
+void RecvFlag(int len, int * flag)
+{
+	s.send_cmd('F');
+	s.recv_data(flag, len, 4);
+}
+
+void SendVof(int len, float * vof)
+{
+	s.send_data(vof, len, 4);
+}
+
+void RecvVof(int len, float * vof)
+{
+	s.send_cmd('V');
+	s.recv_data(vof, len, 4);
+}

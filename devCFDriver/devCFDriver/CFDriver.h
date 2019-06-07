@@ -33,8 +33,8 @@ public:
 	std::string init_client(const char* adress, int port);
 	std::string send_cmd(char command);
 	std::string recv_cmd(char & command);
-	std::string send_data(void *buf, int len, int size, std::string name);
-	std::string recv_data(void *buf, int &len, int size, std::string &name);
+	std::string send_data(void *buf, int len, int size);
+	std::string recv_data(void *buf, int &len, int size);
 	std::string send_file(std::string file);
 private:
 #ifdef linux
