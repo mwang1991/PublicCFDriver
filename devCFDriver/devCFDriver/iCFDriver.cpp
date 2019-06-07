@@ -21,7 +21,7 @@ void RecvCommand(char & command)
 
 void InitSimulation()
 {
-	printf("Sending command for simulation initialization\n")
+	printf("Sending command for simulation initialization\n");
 	s.send_cmd('0');
 
 }

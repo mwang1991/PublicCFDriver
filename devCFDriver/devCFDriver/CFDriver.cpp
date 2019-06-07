@@ -131,7 +131,7 @@ string CFDriver::send_cmd(char command)
 string CFDriver::recv_cmd(char & command)
 {
 	char buf[BUFLEN];
-	cfdrecv(buf, BUFLEN)==0;
+	cfdrecv(buf, BUFLEN);
 	command = buf[0];
 	return string();
 }
