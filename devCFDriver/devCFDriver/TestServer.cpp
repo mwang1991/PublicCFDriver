@@ -7,7 +7,7 @@ int main()
 	cout << "Hello World!\n" << endl;
 	InitServer(5099);
 	RecvCommand(c);
-	switch (command)
+	switch (c)
 	{
 	case '0':
 		printf("Command for simulation initialization received\n");
