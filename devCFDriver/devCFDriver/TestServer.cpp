@@ -3,18 +3,35 @@ using namespace std;
 
 int main()
 {	
-	char c = 'a';
 	cout << "Hello World!\n" << endl;
 	InitServer(5099);
-	RecvCommand(c);
-	switch (c)
-	{
-	case '0':
-		printf("Command for simulation initialization received\n");
-		break;
-	default:
-		printf("No command from client\n");
-		break;
+
+
+	while(1){
+		char c;
+
+		RecvCommand(c);
+		switch (c)
+		{
+		case '0':
+			printf("Command for simulation to initialize received\n");
+			break;
+		case '1':
+			printf("Command for simulation to start received\n");
+			break;
+		case '2':
+			printf("Command for simulation to stop received\n");
+			break;
+		case '3':
+			printf("Command for simulation to continue received\n");
+			return 0;
+			break;
+		default:
+			printf("No command from client\n");
+			break;
+		}
 	}
+
+
 
 }
