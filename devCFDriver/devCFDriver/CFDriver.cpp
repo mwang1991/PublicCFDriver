@@ -69,7 +69,7 @@ string CFDriver::init_client(const char* adress, int port)
 {
 
 #ifdef _WIN64
-	freopen("debug.txt", "a", stdout);
+	freopen("debug.txt", "w", stdout);
 
 	WORD sockVersion = MAKEWORD(2, 2);
 	WSADATA data;
