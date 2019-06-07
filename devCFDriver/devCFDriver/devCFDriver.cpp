@@ -9,12 +9,10 @@ using namespace std;
 int main()
 {	
 	char c = 'a';
-	cout << "Hello World!\n" << endl;
-	InitServer(5099);
+	cout << "Starting... Debug in file debug.txt" << endl;
+	InitClient("192.168.1.176",5099);
 
-	//s.send_cmd(c);
-	printf("SetTexture id:%d\n");
-	printf("%c", c);
+	InitSimulation();
 
 	//cout << "end" << endl;
 }

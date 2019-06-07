@@ -1,3 +1,0 @@
-Server socket created
-SetTexture id:1935763044
-a
