@@ -13,6 +13,9 @@ int main()
 	InitClient("192.168.1.176",5099);
 
 	InitSimulation();
+	StartSimulation();
+	StopSimulation();
+	ContinueSimulation();
 
 	//cout << "end" << endl;
 }
