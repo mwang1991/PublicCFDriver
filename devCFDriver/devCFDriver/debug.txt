@@ -1,1 +1,4 @@
-Command 0 sentCommand 0 sent
+Sending command for simulation to initialize
+Sending command for simulation to start
+Sending command for simulation to stop
+Sending command for simulation to continue

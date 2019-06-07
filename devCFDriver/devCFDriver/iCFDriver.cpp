@@ -21,23 +21,26 @@ void RecvCommand(char & command)
 
 void InitSimulation()
 {
-	printf("Sending command for simulation initialization\n");
+	printf("Sending command for simulation to initialize\n");
 	s.send_cmd('0');
 
 }
 
 void StartSimulation()
 {
+	printf("Sending command for simulation to start\n");
 	s.send_cmd('1');
 }
 
 void StopSimulation()
 {
+	printf("Sending command for simulation to stop\n");
 	s.send_cmd('2');
 }
 
 void ContinueSimulation()
 {
+	printf("Sending command for simulation to continue\n");
 	s.send_cmd('3');
 }
 
