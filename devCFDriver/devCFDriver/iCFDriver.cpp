@@ -88,3 +88,15 @@ void RecvVof(int len, float * vof)
 	s.send_cmd('V');
 	s.recv_data(vof, len, 4);
 }
+
+void SendFile(const char * filename)
+{
+	s.send_cmd('f');
+	s.send_file(filename);
+	
+}
+
+void RecvFile()
+{
+	s.recv_file();
+}

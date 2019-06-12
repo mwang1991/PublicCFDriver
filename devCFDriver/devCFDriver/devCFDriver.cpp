@@ -16,6 +16,7 @@ int main()
 	StartSimulation();
 	StopSimulation();
 	ContinueSimulation();
+	SendFile("testFile.pdf");
 
 	//cout << "end" << endl;
 }

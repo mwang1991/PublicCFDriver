@@ -37,7 +37,7 @@ public:
 	std::string recv_cmd(char & command);
 	std::string send_data(void *buf, int len, int size);
 	std::string recv_data(void *buf, int &len, int size);
-	std::string send_file(char* file);
+	std::string send_file(const char* file);
 	std::string recv_file();
 
 private:
