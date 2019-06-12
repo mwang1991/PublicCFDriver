@@ -236,7 +236,7 @@ std::string CFDriver::recv_file()
 	printf(filename);
 	printf("\n");
 	
-	cfdrecv((char*)&filelength, 4);
+	cfdrecv((char*)filelength, 4);
 	printf("File length is %d\n",filelength);
 
 	ofstream rec_file;
