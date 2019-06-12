@@ -224,7 +224,7 @@ std::string CFDriver::recv_file()
 	int namelen = 0;
 	int left = 0;
 	int filelength = 0;
-	char filename[MAX_PATH] = { 0 };
+	char filename[BUFLEN] = { 0 };
 	namelen = cfdrecv(buf, BUFLEN);
 	int i = 0;
 	for (i; i <= namelen; i++)
