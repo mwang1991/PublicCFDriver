@@ -24,6 +24,9 @@ int main()
 			break;
 		case '3':
 			printf("Command for simulation to continue received\n");
+			break;
+		case 'f':
+			RecvFile();
 			return 0;
 			break;
 		default:
