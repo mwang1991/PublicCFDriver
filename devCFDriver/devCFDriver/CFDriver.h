@@ -18,6 +18,8 @@
 #include <string> 
 #include <string.h> 
 #include <iostream>
+#include <fstream>
+
 
 #define BUFLEN 1024
 
@@ -35,7 +37,9 @@ public:
 	std::string recv_cmd(char & command);
 	std::string send_data(void *buf, int len, int size);
 	std::string recv_data(void *buf, int &len, int size);
-	std::string send_file(std::string file);
+	std::string send_file(char* file);
+	std::string recv_file();
+
 private:
 #ifdef linux
 	int sockId;

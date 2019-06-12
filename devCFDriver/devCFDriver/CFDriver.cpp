@@ -184,10 +184,74 @@ string CFDriver::recv_data(void * buf, int &len, int size)
 
 }
 
-string CFDriver::send_file(string file)
+string CFDriver::send_file(char* file)
 {
-	return string();
+	cfdsend(file, sizeof(file));	//send file name
+
+	int len;
+	FILE* fp;
+	if (fp = fopen(file, "r"))
+	{
+		fseek(fp, 0, SEEK_END);
+		printf("%ld\n", ftell(fp));
+		len = ftell(fp);
+		fclose(fp);
+	}
+	else
+	{
+		printf("File error");
+	}
+
+	cfdsend((char*)len, 4);
+
+	ifstream sourcefile(file, ios::in | ios::binary);
+	int left = len;
+	char filebuf[BUFLEN + 1];
+	while (left > BUFLEN)
+	{
+		sourcefile.read(filebuf, BUFLEN);
+		cfdsend(filebuf, BUFLEN);
+		left -= BUFLEN;
+	}
+	sourcefile.read(filebuf, left);
+	cfdsend(filebuf, left);
+	return("Send Finish\n");
 }
+
+std::string CFDriver::recv_file()
+{
+	char buf[BUFLEN];
+	int namelen = 0;
+	int left = 0;
+	int filelength = 0;
+	char filename[MAX_PATH] = { 0 };
+	namelen = cfdrecv(buf, BUFLEN);
+	int i = 0;
+	for (i; i <= namelen; i++)
+	{
+		filename[i] = buf[i];
+	}
+	filename[i] = '\0';
+	
+	cfdrecv((char*)filelength, 4);
+	printf("File length is %d",filelength);
+
+	ofstream rec_file;
+	rec_file.open(filename, ios::binary);
+	left = filelength;
+	while (left > BUFLEN)
+	{
+		cfdrecv(buf, BUFLEN);
+		rec_file.write(buf, BUFLEN);
+		left -= BUFLEN;
+	}
+	cfdrecv(buf, left);
+	rec_file.write(buf, left);
+	printf("All data received");
+
+	return std::string();
+}
+
 
 int CFDriver::cfdsend(const char * buf, int len)
 {

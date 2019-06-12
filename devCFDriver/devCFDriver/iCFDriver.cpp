@@ -69,12 +69,12 @@ void RecvGeometry(int len, float * geometry)
 
 void SendFlag(int len, int * flag)
 {
+	s.send_cmd('f');
 	s.send_data(flag, len, 4);
 }
 
 void RecvFlag(int len, int * flag)
 {
-	s.send_cmd('F');
 	s.recv_data(flag, len, 4);
 }
 
