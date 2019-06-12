@@ -232,9 +232,12 @@ std::string CFDriver::recv_file()
 		filename[i] = buf[i];
 	}
 	filename[i] = '\0';
+	printf("File name is ");
+	printf(filename);
+	printf("\n");
 	
-	cfdrecv((char*)filelength, 4);
-	printf("File length is %d",filelength);
+	cfdrecv((char*)&filelength, 4);
+	printf("File length is %d\n",filelength);
 
 	ofstream rec_file;
 	rec_file.open(filename, ios::binary);
