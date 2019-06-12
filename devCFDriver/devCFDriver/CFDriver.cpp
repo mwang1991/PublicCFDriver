@@ -139,21 +139,21 @@ string CFDriver::recv_cmd(char & command)
 string CFDriver::send_data( void * buf, int len, int size)
 {
 
-	int     left = 0;
+	int     left[1];
 	int     count = 0;
-	left = len * size;
+	left[0] = len * size;
 	//char    revbuf[BUFLEN];
 
 	//cfdsend(name, sizeof(name));
 	cfdsend((char*)left, 4);
 
-	while (left > BUFLEN)
+	while (left[0] > BUFLEN)
 	{
 		cfdsend((char*)buf + count, BUFLEN);
 		count += BUFLEN;
-		left -= BUFLEN;
+		left[0] -= BUFLEN;
 	}
-	cfdsend((char*)buf + count, left);
+	cfdsend((char*)buf + count, left[0]);
 
 	return("Send Finish\n");
 
@@ -164,21 +164,21 @@ string CFDriver::recv_data(void * buf, int &len, int size)
 
 	//int namelen = 0;
 	int recvlen = 0;
-	int left = 0;
+	int left[1];
 	int count = 0;
 
 	//namelen = cfdrecv(name, BUFLEN);
-	cfdrecv((char *)left, 4);
+	cfdrecv((char*)left, 4);
 
-	len = left / size;
-	while (left > BUFLEN)
+	len = left[0] / size;
+	while (left[0] > BUFLEN)
 		{
-			recvlen = cfdrecv((char *)buf + count, BUFLEN);
+			recvlen = cfdrecv((char*)buf + count, BUFLEN);
 
-			left -= recvlen;
+			left[0] -= recvlen;
 			count += recvlen;
 		}
-		cfdrecv((char *)buf + count, left);
+		cfdrecv((char *)buf + count, left[0]);
 
 	return "All data received\n";
 
@@ -188,13 +188,13 @@ string CFDriver::send_file(const char* file)
 {
 	cfdsend(file, BUFLEN);	//send file name
 
-	int len;
+	int len[1];
 	FILE* fp;
 	if (fp = fopen(file, "r"))
 	{
 		fseek(fp, 0, SEEK_END);
 		printf("%ld\n", ftell(fp));
-		len = ftell(fp);
+		len[0] = ftell(fp);
 		fclose(fp);
 	}
 	else
@@ -205,7 +205,7 @@ string CFDriver::send_file(const char* file)
 	cfdsend((char*)len, 4);
 
 	ifstream sourcefile(file, ios::in | ios::binary);
-	int left = len;
+	int left = len[0];
 	char filebuf[BUFLEN + 1];
 	while (left > BUFLEN)
 	{
@@ -223,7 +223,7 @@ std::string CFDriver::recv_file()
 	char buf[BUFLEN];
 	int namelen = 0;
 	int left = 0;
-	int filelength = 0;
+	int filelength[1];
 	char filename[BUFLEN] = { 0 };
 	namelen = cfdrecv(buf, BUFLEN);
 	int i = 0;
@@ -241,7 +241,7 @@ std::string CFDriver::recv_file()
 
 	ofstream rec_file;
 	rec_file.open(filename, ios::binary);
-	left = filelength;
+	left = filelength[0];
 	while (left > BUFLEN)
 	{
 		cfdrecv(buf, BUFLEN);
