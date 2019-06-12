@@ -221,6 +221,7 @@ std::string CFDriver::recv_file()
 {
 	char buf[BUFLEN];
 	int namelen = 0;
+	int recvlen = 0;
 	int left = 0;
 	int filelength[1];
 	char filename[BUFLEN] = { 0 };
@@ -241,14 +242,13 @@ std::string CFDriver::recv_file()
 	ofstream rec_file;
 	rec_file.open(filename, ios::binary);
 	left = filelength[0];
-	while (left > BUFLEN)
+	while (left > 0)
 	{
-		cfdrecv(buf, BUFLEN);
-		rec_file.write(buf, BUFLEN);
-		left -= BUFLEN;
+		recvlen = cfdrecv(buf, BUFLEN);
+		rec_file.write(buf, recvlen);
+		left -= recvlen;
 	}
-	cfdrecv(buf, left);
-	rec_file.write(buf, left);
+
 	printf("All data received");
 
 	return std::string();
