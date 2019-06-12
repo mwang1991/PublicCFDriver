@@ -186,7 +186,7 @@ string CFDriver::recv_data(void * buf, int &len, int size)
 
 string CFDriver::send_file(const char* file)
 {
-	cfdsend(file, sizeof(file));	//send file name
+	cfdsend(file, BUFLEN);	//send file name
 
 	int len;
 	FILE* fp;
