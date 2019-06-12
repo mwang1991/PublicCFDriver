@@ -188,24 +188,23 @@ string CFDriver::send_file(const char* file)
 {
 	cfdsend(file, BUFLEN);	//send file name
 
-	int len[1];
+	int filelength[1];
 	FILE* fp;
 	if (fp = fopen(file, "r"))
 	{
 		fseek(fp, 0, SEEK_END);
-		printf("%ld\n", ftell(fp));
-		len[0] = ftell(fp);
+		filelength[0] = ftell(fp);
 		fclose(fp);
 	}
 	else
 	{
 		printf("File error");
 	}
-
-	cfdsend((char*)len, 4);
+	printf("File length is %d", filelength[0]);
+	cfdsend((char*)filelength, 4);
 
 	ifstream sourcefile(file, ios::in | ios::binary);
-	int left = len[0];
+	int left = filelength[0];
 	char filebuf[BUFLEN + 1];
 	while (left > BUFLEN)
 	{
@@ -237,7 +236,7 @@ std::string CFDriver::recv_file()
 	printf("\n");
 	
 	cfdrecv((char*)filelength, 4);
-	printf("File length is %d\n",filelength);
+	printf("File length is %d\n",filelength[0]);
 
 	ofstream rec_file;
 	rec_file.open(filename, ios::binary);
