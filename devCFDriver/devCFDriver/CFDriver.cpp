@@ -41,6 +41,7 @@ string CFDriver::init_server(int port)
 	//waiting for connecting
 	if ((clientsoc = accept(serversoc, (SOCKADDR *)&clientaddr, &len)) <= 0)
 		return("Accept fail!\n");
+	printf("Client: %s connected\n", inet_ntoa(clientaddr.sin_addr));
 	return("Connected\n");
 #endif
 #ifdef linux
@@ -171,14 +172,20 @@ string CFDriver::recv_data(void * buf, int &len, int size)
 	cfdrecv((char*)left, 4);
 
 	len = left[0] / size;
-	while (left[0] > BUFLEN)
+	while (left[0] > 0)
+	{
+		if (left[0] > BUFLEN)
 		{
 			recvlen = cfdrecv((char*)buf + count, BUFLEN);
-
-			left[0] -= recvlen;
-			count += recvlen;
 		}
-		cfdrecv((char *)buf + count, left[0]);
+		else 
+		{ 
+			recvlen = cfdrecv((char *)buf + count, left[0]);
+		}
+
+		left[0] -= recvlen;
+		count += recvlen;
+	}
 
 	return "All data received\n";
 

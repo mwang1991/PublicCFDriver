@@ -1,0 +1,8 @@
+﻿  stdafx.cpp
+  CFDriver.cpp
+  iCFDriver.cpp
+    正在创建库 D:\work\CFDriver\iCFDriver\x64\Release\iCFDriver.lib 和对象 D:\work\CFDriver\iCFDriver\x64\Release\iCFDriver.exp
+  正在生成代码
+  All 183 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  iCFDriver.vcxproj -> D:\work\CFDriver\iCFDriver\x64\Release\iCFDriver.dll

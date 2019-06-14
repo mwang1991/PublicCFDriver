@@ -1,4 +1,6 @@
-﻿  CFDriver.cpp
-  CFDriverTest.cpp
+﻿  stdafx.cpp
+  CFDriver.cpp
+  iCFDriver.cpp
   正在生成代码...
+    正在创建库 D:\work\CFDriver\iCFDriver\x64\Debug\iCFDriver.lib 和对象 D:\work\CFDriver\iCFDriver\x64\Debug\iCFDriver.exp
   iCFDriver.vcxproj -> D:\work\CFDriver\iCFDriver\x64\Debug\iCFDriver.dll

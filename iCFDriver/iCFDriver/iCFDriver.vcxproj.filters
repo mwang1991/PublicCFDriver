@@ -24,15 +24,18 @@
     <ClInclude Include="CFDriver.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="iCFDriver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="CFDriverTest.cpp">
+    <ClCompile Include="CFDriver.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="CFDriver.cpp">
+    <ClCompile Include="iCFDriver.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
