@@ -270,7 +270,7 @@ void CFDriver::disconnect()
 	closesocket(clientsoc);
 #endif
 #ifdef linux
-	closesocket(sockId);
+	close(sockId);
 #endif
 
 }
