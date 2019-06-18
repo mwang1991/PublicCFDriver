@@ -4,6 +4,8 @@
 //
 
 #pragma once
+#ifdef _WIN64
+
 
 #include "targetver.h"
 
@@ -13,6 +15,7 @@
 // Windows 头文件
 #include <windows.h>
 
+#endif // DEBUG
 
 
 // 在此处引用程序需要的其他标头
