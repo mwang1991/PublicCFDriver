@@ -100,7 +100,7 @@ void CFDriver::init_client(const char* adress, int port)
     struct sockaddr_in serv_addr; 
     if((sockId = socket(AF_INET, SOCK_STREAM, 0)) < 0)
     {
-        return("\n Error : Could not create socket \n");
+		printf("\n Error : Could not create socket \n");
     } 
 
     memset(&serv_addr, '0', sizeof(serv_addr)); 
@@ -110,12 +110,12 @@ void CFDriver::init_client(const char* adress, int port)
 
     if(inet_pton(AF_INET, adress, &serv_addr.sin_addr)<=0)
     {
-        return("\n inet_pton error occured\n");
+		printf("\n inet_pton error occured\n");
     } 
 
     if( connect(sockId, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
     {
-       return("\n Error : Connect Failed \n");
+		printf("\n Error : Connect Failed \n");
     } 
 #endif
 
@@ -266,7 +266,13 @@ std::string CFDriver::recv_file()
 
 void CFDriver::disconnect()
 {
+#ifdef _WIN64
 	closesocket(clientsoc);
+#endif
+#ifdef linux
+	closesocket(sockId);
+#endif
+
 }
 
 
