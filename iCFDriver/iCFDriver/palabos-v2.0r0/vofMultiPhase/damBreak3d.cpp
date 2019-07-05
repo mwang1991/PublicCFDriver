@@ -158,7 +158,39 @@ void writeResults(MultiBlockLattice3D<T,DESCRIPTOR>& lattice, MultiScalarField3D
     std::vector<Triangle> triangles;
     isoSurfaceMarchingCube(triangles, volumeFraction, isoLevels, volumeFraction.getBoundingBox());
     TriangleSet<T>(triangles).writeBinarySTL(createFileName(outDir+"/interface", iT, 6)+".stl");
+    std::cout<<(triangles.size())<<std::endl;
+    //VtkImageOutput3D<T> vtkOut(createFileName("volumeFraction", iT, 6), 1.);
+    //vtkOut.writeData<float>(volumeFraction, "vf", 1.);
+}
 
+void sendInterface(MultiBlockLattice3D<T,DESCRIPTOR>& lattice, MultiScalarField3D<T>& volumeFraction, plint iT)
+{
+    static const plint nx = lattice.getNx();
+    static const plint ny = lattice.getNy();
+    static const plint nz = lattice.getNz();
+    Box3D slice(0, nx-1, ny/2, ny/2, 0, nz-1);
+    
+    // Use a marching-cube algorithm to reconstruct the free surface and write an STL file.
+    std::vector<T> isoLevels;
+    isoLevels.push_back((T) 0.5);
+    typedef TriangleSet<T>::Triangle Triangle;
+    std::vector<Triangle> triangles;
+    isoSurfaceMarchingCube(triangles, volumeFraction, isoLevels, volumeFraction.getBoundingBox());
+    double *t  = new double[triangles.size() * 9];
+    for(int i = 0; i < triangles.size(); i++){
+        *(t + i * 9 + 0) = triangles[i][0][0];
+        *(t + i * 9 + 1) = triangles[i][0][1];
+        *(t + i * 9 + 2) = triangles[i][0][2];
+        *(t + i * 9 + 3) = triangles[i][1][0];
+        *(t + i * 9 + 4) = triangles[i][1][1];
+        *(t + i * 9 + 5) = triangles[i][1][2];
+        *(t + i * 9 + 6) = triangles[i][2][0];
+        *(t + i * 9 + 7) = triangles[i][2][1];
+        *(t + i * 9 + 8) = triangles[i][2][2];
+    }
+    SendData(triangles.size() * 9, t);
+
+    delete [] t;
     //VtkImageOutput3D<T> vtkOut(createFileName("volumeFraction", iT, 6), 1.);
     //vtkOut.writeData<float>(volumeFraction, "vf", 1.);
 }
@@ -269,14 +301,19 @@ int main(int argc, char **argv)
         {
             case '0':
                 run = false;
+                setToFunction(fields.flag, fields.flag.getBoundingBox().enlarge(-1), initialFluidFlags);
                 fields.defaultInitialize();
-                iT = 0;
+                iT = 1000;
                 break;
             case '1':
                 run = true;
                 break;
             case '2':
                 return 0;
+            case 'D':
+                sendInterface(fields.lattice, fields.volumeFraction, iT);
+                break;
+            break;
         }
         if (run){
             global::timer("iteration").restart();
@@ -298,6 +335,7 @@ int main(int argc, char **argv)
             if (iT % writeImagesIter == 0) {
                 global::timer("images").start();
                 writeResults(fields.lattice, fields.volumeFraction, iT);
+
                 pcout << "Total time spent for writing images: "
                     << global::timer("images").stop() << std::endl;
             } 

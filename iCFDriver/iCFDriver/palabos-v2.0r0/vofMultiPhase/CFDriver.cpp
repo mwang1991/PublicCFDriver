@@ -146,7 +146,7 @@ string CFDriver::recv_cmd(char & command)
 
 string CFDriver::send_data( void * buf, int len, int size)
 {
-
+	printf("Sending data");
 	int     left[1];
 	int     count = 0;
 	left[0] = len * size;
@@ -162,6 +162,7 @@ string CFDriver::send_data( void * buf, int len, int size)
 		left[0] -= BUFLEN;
 	}
 	cfdsend((char*)buf + count, left[0]);
+	printf("Sending finish");
 
 	return("Send Finish\n");
 
