@@ -49,7 +49,7 @@ void SendData(int len, double * data)
 	s.send_data(data, len, 8);
 }
 
-void RecvData(int len, double * data)
+void RecvData(int &len, double * data)
 {
 	s.send_cmd('D');
 	s.recv_data(data, len, 8);

@@ -172,6 +172,7 @@ string CFDriver::recv_data(void * buf, int &len, int size)
 	cfdrecv((char*)left, 4);
 
 	len = left[0] / size;
+	cout << len << endl;
 	while (left[0] > 0)
 	{
 		if (left[0] > BUFLEN)
@@ -186,6 +187,7 @@ string CFDriver::recv_data(void * buf, int &len, int size)
 		left[0] -= recvlen;
 		count += recvlen;
 	}
+	printf( "All data received\n");
 
 	return "All data received\n";
 

@@ -18,6 +18,6 @@ extern "C"
 	extern void SendFile(const char* filename);
 	extern void RecvFile();
 	extern void SendData(int len, double* data);	//Backup function
-	extern void RecvData(int len, double* data);	//Backup function
+	extern void RecvData(int &len, double* data);	//Backup function
 
 }

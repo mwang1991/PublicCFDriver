@@ -20,9 +20,27 @@ int main()
 	cout << "init" << endl;
 	Sleep(10000);
 	int len = 0;
-	double m[200000];
+	double *m = new double[200000];
 	RecvData(len, m);
+	ofstream outfile("DensityData.txt", ios::in | ios::out | ios::binary);
+	if (!outfile.is_open())
+	{
+		cout << " the file open fail" << endl;
+		exit(1);
+	}
+	for (int i = 0; i < len / 3; i++)
+	{
+		for (int j = 0; j < 3; j++) {
+			outfile << m[i] << " ";
+		}
+		outfile << endl;
+	}
+	outfile << "\r\n";
+
+	outfile.close();
+
 	StopSimulation();
+	delete m;
 	//ContinueSimulation();
 	//SendFile("testFile.pdf");
 
