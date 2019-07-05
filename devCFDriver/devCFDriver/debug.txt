@@ -1,1 +1,6 @@
-aaa
+Sending command for simulation to start
+start
+Sending command for simulation to initialize
+Sending command for simulation to start
+init
+Sending command for simulation to stop

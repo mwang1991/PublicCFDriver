@@ -2,7 +2,6 @@
 //
 
 #include "pch.h"
-
 #include"iCFDriver.h"
 using namespace std;
 
@@ -12,11 +11,20 @@ int main()
 	cout << "Starting... Debug in file debug.txt" << endl;
 	InitClient("192.168.1.176",5099);
 	
+	//InitSimulation();
+	StartSimulation();
+	cout << "start" << endl;
+	Sleep(15000);	
 	InitSimulation();
 	StartSimulation();
+	cout << "init" << endl;
+	Sleep(10000);
+	int len = 0;
+	double m[200000];
+	RecvData(len, m);
 	StopSimulation();
-	ContinueSimulation();
-	SendFile("testFile.pdf");
+	//ContinueSimulation();
+	//SendFile("testFile.pdf");
 
 	//cout << "end" << endl;
 }

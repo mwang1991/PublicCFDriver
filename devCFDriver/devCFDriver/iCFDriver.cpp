@@ -44,15 +44,15 @@ void ContinueSimulation()
 	s.send_cmd('3');
 }
 
-void SendData(int len, float * data)
+void SendData(int len, double * data)
 {
-	s.send_data(data, len, 4);
+	s.send_data(data, len, 8);
 }
 
-void RecvData(int len, float * data)
+void RecvData(int len, double * data)
 {
 	s.send_cmd('D');
-	s.recv_data(data, len, 4);
+	s.recv_data(data, len, 8);
 }
 
 void SendGeometry(int len, float * geometry)
