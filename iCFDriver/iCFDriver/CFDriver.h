@@ -30,16 +30,15 @@ public:
 //	CFDriver();
 //	~CFDriver();
 
-//	std::string init_server();
 
-	std::string init_server(int port);
+	void init_server(int port);
 	void init_client(const char* adress, int port);
-	std::string send_cmd(char command);
-	std::string recv_cmd(char & command);
-	std::string send_data(void *buf, int len, int size);
-	std::string recv_data(void *buf, int &len, int size);
-	std::string send_file(const char* file);
-	std::string recv_file();
+	void send_cmd(char command);
+	void recv_cmd(char & command);
+	void send_data(void *buf, int len, int size);
+	void recv_data(void *buf, int &len, int size);
+	void send_file(const char* file);
+	void recv_file();
 	void disconnect();
 
 private:

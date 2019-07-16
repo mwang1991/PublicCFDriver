@@ -1,2 +1,6 @@
-﻿  devCFDriver.cpp
+﻿  pch.cpp
+  CFDriver.cpp
+  devCFDriver.cpp
+  iCFDriver.cpp
+  正在生成代码...
   devCFDriver.vcxproj -> D:\work\CFDriver\devCFDriver\x64\Debug\devCFDriver.exe

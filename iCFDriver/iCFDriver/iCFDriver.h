@@ -10,6 +10,7 @@ extern "C"
 	__declspec(dllexport) void InitClient(const char* adress, int port);
 	__declspec(dllexport) void Disconnect();
 	__declspec(dllexport) void RecvCommand(char & command);
+	__declspec(dllexport) void SendCommand(char command);
 	__declspec(dllexport) void InitSimulation();
 	__declspec(dllexport) void StartSimulation();
 	__declspec(dllexport) void StopSimulation();
@@ -22,14 +23,15 @@ extern "C"
 	__declspec(dllexport) void RecvVof(int len, float* vof);
 	__declspec(dllexport) void SendFile(const char* filename);
 	__declspec(dllexport) void RecvFile();
-	__declspec(dllexport) void SendData(int len, float* data);	//Backup function
-	__declspec(dllexport) void RecvData(int len, float* data);	//Backup function
+	__declspec(dllexport) void SendData(int len, double* data);	//Backup function
+	__declspec(dllexport) void RecvData(int &len, double* data);	//Backup function
 #endif
 
 #ifdef linux
 	extern void InitServer(int port);
 	extern void InitClient(const char* adress, int port);
 	extern void RecvCommand(char & command);
+	extern void SendCommand(char command);
 	extern void InitSimulation();
 	extern void StartSimulation();
 	extern void StopSimulation();
@@ -42,8 +44,8 @@ extern "C"
 	extern void RecvVof(int len, float* vof);
 	extern void SendFile(const char* filename);
 	extern void RecvFile();
-	extern void SendData(int len, float* data);	//Backup function
-	extern void RecvData(int len, float* data);	//Backup function
+	extern void SendData(int len, double* data);	//Backup function
+	extern void RecvData(int &len, double* data);	//Backup function
 #endif
 
 }

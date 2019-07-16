@@ -11,7 +11,7 @@ using namespace std;
 
 
 
-string CFDriver::init_server(int port)
+void CFDriver::init_server(int port)
 {
 
 #ifdef _WIN64
@@ -22,29 +22,39 @@ string CFDriver::init_server(int port)
 	int len;
 	WSAStartup(MAKEWORD(1, 1), &wsa);	//initial Ws2_32.dll by a process
 	if ((serversoc = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) <= 0)	//create a tcp socket
-		return("Create socket fail!\n");
+	{
+		printf("Create socket fail!\n");
+		return;
+	}
 
 	serveraddr.sin_family = AF_INET;
 	serveraddr.sin_port = htons(port);
 	serveraddr.sin_addr.S_un.S_addr = htonl(INADDR_ANY);
 
 	if (bind(serversoc, (SOCKADDR *)&serveraddr, sizeof(serveraddr)) != 0)
-		return("Bind fail!\n");
-	
+	{
+		printf("Bind fail!\n");
+		return;
+	}
 
 	//start listen, maximum length of the queue of pending connections is 1
 	printf("Start listen...\n");
-	if (listen(serversoc, 1) != 0)
-		return("Listen fail!\n");
+	if (listen(serversoc, 1) != 0) {
+		printf("Listen fail!\n");
+		return;
+	}
 
 	len = sizeof(SOCKADDR_IN);
 
 	//waiting for connecting
 	if ((clientsoc = accept(serversoc, (SOCKADDR *)&clientaddr, &len)) <= 0)
-		return("Accept fail!\n");
+	{
+		printf("Accept fail!\n");
+		return;
+	}
 	printf("Client: %s connected\n", inet_ntoa(clientaddr.sin_addr));
 	fflush(stdout);
-	return("Connected\n");
+	printf("Connected\n");
 #endif
 #ifdef linux
 	struct sockaddr_in serv_addr, cli_addr;
@@ -95,6 +105,8 @@ void CFDriver::init_client(const char* adress, int port)
 		closesocket(clientsoc);
 		printf("connect error !\n");
 	}
+	printf("Connected\n");
+	fflush(stdout);
 #endif
 #ifdef linux
     struct sockaddr_in serv_addr; 
@@ -124,23 +136,23 @@ void CFDriver::init_client(const char* adress, int port)
 	
 }
 
-string CFDriver::send_cmd(char command)
+void CFDriver::send_cmd(char command)
 {	
 	char buf[BUFLEN];
 	buf[0] = command;
 	cfdsend( buf, 1);
-	return string();
+	return;
 }
 
-string CFDriver::recv_cmd(char & command)
+void CFDriver::recv_cmd(char & command)
 {
 	char buf[BUFLEN];
 	cfdrecv(buf, 1);
 	command = buf[0];
-	return string();
+	return ;
 }
 
-string CFDriver::send_data( void * buf, int len, int size)
+void CFDriver::send_data( void * buf, int len, int size)
 {
 
 	int     left[1];
@@ -159,17 +171,18 @@ string CFDriver::send_data( void * buf, int len, int size)
 	}
 	cfdsend((char*)buf + count, left[0]);
 
-	return("Send Finish\n");
+	printf("Send Finish\n");
 
 }
 
-string CFDriver::recv_data(void * buf, int &len, int size)
+void CFDriver::recv_data(void * buf, int &len, int size)
 {
 
 	//int namelen = 0;
 	int recvlen = 0;
 	int left[1];
 	int count = 0;
+	int i = 0;
 
 	//namelen = cfdrecv(name, BUFLEN);
 	cfdrecv((char*)left, 4);
@@ -188,13 +201,13 @@ string CFDriver::recv_data(void * buf, int &len, int size)
 
 		left[0] -= recvlen;
 		count += recvlen;
+		i++;
+		if (i > 100000) return;
 	}
-
-	return "All data received\n";
 
 }
 
-string CFDriver::send_file(const char* file)
+void CFDriver::send_file(const char* file)
 {
 	cfdsend(file, BUFLEN);	//send file name
 
@@ -224,10 +237,10 @@ string CFDriver::send_file(const char* file)
 	}
 	sourcefile.read(filebuf, left);
 	cfdsend(filebuf, left);
-	return("Send Finish\n");
+	printf("Send Finish\n");
 }
 
-std::string CFDriver::recv_file()
+void CFDriver::recv_file()
 {
 	char buf[BUFLEN];
 	int namelen = 0;
@@ -261,13 +274,14 @@ std::string CFDriver::recv_file()
 
 	printf("All data received");
 
-	return std::string();
+	return ;
 }
 
 void CFDriver::disconnect()
 {
 #ifdef _WIN64
 	closesocket(clientsoc);
+	fclose(stdout);
 #endif
 #ifdef linux
 	close(sockId);
@@ -293,7 +307,9 @@ int CFDriver::cfdrecv(char * buf, int len)
 	return recv(clientsoc, buf, len, 0);
 #endif
 #ifdef linux
-	return recv(sockId, buf, len, 0);
+	int i = recv(sockId, buf, len, 0);
+	if (i < 0) i = 0;
+	return i;
 #endif
 	
 }

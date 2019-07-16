@@ -16,13 +16,21 @@ void InitClient(const char * adress, int port)
 
 void Disconnect()
 {
+
 	s.disconnect();
+	printf("Disconnected\n");
+	fflush(stdout);
 }
 
 
 void RecvCommand(char & command)
 {
 	s.recv_cmd(command);
+}
+
+void SendCommand(char command)
+{
+	s.send_cmd(command);
 }
 
 void InitSimulation()
@@ -51,15 +59,15 @@ void ContinueSimulation()
 	s.send_cmd('3');
 }
 
-void SendData(int len, float * data)
+void SendData(int len, double * data)
 {
-	s.send_data(data, len, 4);
+	s.send_data(data, len, 8);
 }
 
-void RecvData(int len, float * data)
+void RecvData(int &len, double * data)
 {
 	s.send_cmd('D');
-	s.recv_data(data, len, 4);
+	s.recv_data(data, len, 8);
 }
 
 void SendGeometry(int len, float * geometry)
@@ -78,6 +86,8 @@ void SendFlag(int len, int * flag)
 {
 	s.send_cmd('f');
 	s.send_data(flag, len, 4);
+	printf("Sending flags completed\n");
+	fflush(stdout);
 }
 
 void RecvFlag(int len, int * flag)
